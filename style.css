@@ -1,0 +1,552 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    background: #f8f4ee;
+    overflow-x: hidden;
+    color: #333;
+}
+
+/* شاشة التحميل */
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+
+    background: #111;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+
+    z-index: 9999;
+}
+
+#loading-screen h1 {
+    font-size: 3rem;
+}
+
+/* الصفحة الرئيسية */
+
+.hero {
+    position: relative;
+
+    height: 100vh;
+
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+}
+
+/* فيديو الخلفية */
+
+#bg-video {
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    min-width: 100%;
+    min-height: 100%;
+
+    width: auto;
+    height: auto;
+
+    transform:
+        translate(-50%, -50%);
+
+    object-fit: cover;
+
+    z-index: -2;
+}
+
+/* الطبقة الغامقة فوق الفيديو */
+
+.overlay {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        rgba(0, 0, 0, .45);
+
+    z-index: -1;
+}
+
+/* النصوص */
+
+.hero-content {
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 5rem;
+}
+
+.subtitle {
+    font-size: 1.6rem;
+    margin-top: 15px;
+}
+
+.date {
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
+
+/* الأزرار */
+
+.btn {
+
+    margin-top: 20px;
+
+    padding: 14px 30px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    margin-right: 10px;
+
+    transition: .3s;
+}
+
+.btn:hover {
+
+    transform:
+        scale(1.05);
+
+}
+
+/* السهم */
+
+.scroll-down {
+
+    position: absolute;
+
+    bottom: 30px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    color: white;
+
+    font-size: 2rem;
+
+    animation:
+        bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+
+    50% {
+
+        transform:
+            translateX(-50%) translateY(10px);
+
+    }
+}
+
+/* العداد */
+
+.countdown-section {
+
+    background: white;
+
+    text-align: center;
+
+    padding: 80px 20px;
+}
+
+.countdown-section h2 {
+
+    margin-bottom: 20px;
+
+    font-size: 3rem;
+}
+
+#countdown {
+
+    font-size: 2rem;
+
+    font-weight: bold;
+}
+
+/* معرض الصور */
+
+.gallery {
+
+    padding: 100px 20px;
+}
+
+.photo {
+
+    width: 320px;
+    height: 420px;
+
+    object-fit: cover;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 30px rgba(0, 0, 0, .2);
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    transition: 1s;
+}
+
+.photo.show {
+
+    opacity: 1;
+}
+
+/* توزيع الصور */
+
+.p1 {
+    margin-left: 5%;
+    transform: translateY(80px) rotate(-8deg);
+}
+
+.p2 {
+    margin-left: 50%;
+    margin-top: 80px;
+    transform: translateY(80px) rotate(8deg);
+}
+
+.p3 {
+    margin-left: 15%;
+    margin-top: 100px;
+    transform: translateY(80px) rotate(-5deg);
+}
+
+.p4 {
+    margin-left: 55%;
+    margin-top: 100px;
+    transform: translateY(80px) rotate(6deg);
+}
+
+.p5 {
+    margin-left: 10%;
+    margin-top: 100px;
+    transform: translateY(80px) rotate(-7deg);
+}
+
+.p6 {
+    margin-left: 50%;
+    margin-top: 100px;
+    transform: translateY(80px) rotate(5deg);
+}
+
+/* القلوب والورد */
+
+.decoration {
+
+    text-align: center;
+
+    font-size: 50px;
+
+    margin: 80px 0;
+}
+
+/* الدعوة */
+
+.invitation {
+
+    background: white;
+
+    text-align: center;
+
+    padding: 100px 20px;
+}
+
+.invitation h2 {
+
+    font-size: 4rem;
+
+    margin-bottom: 20px;
+}
+
+.invitation p {
+
+    font-size: 1.3rem;
+}
+
+.details {
+
+    margin-top: 40px;
+}
+
+.details p {
+
+    margin: 15px 0;
+}
+
+/* النهاية */
+
+.thanks {
+
+    text-align: center;
+
+    padding: 100px 20px;
+}
+
+.thanks h2 {
+
+    font-size: 3rem;
+
+    margin-bottom: 20px;
+}
+
+/* تكبير الصور */
+
+#lightbox {
+
+    display: none;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background:
+        rgba(0, 0, 0, .95);
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 999;
+}
+
+#lightbox-img {
+
+    max-width: 90%;
+    max-height: 90%;
+}
+
+#close-btn {
+
+    position: absolute;
+
+    top: 20px;
+    right: 30px;
+
+    color: white;
+
+    font-size: 50px;
+
+    cursor: pointer;
+}
+
+/* القلوب الطائرة */
+
+.heart {
+
+    position: fixed;
+
+    bottom: -20px;
+
+    font-size: 25px;
+
+    pointer-events: none;
+
+    animation:
+        fly 8s linear forwards;
+}
+
+@keyframes fly {
+
+    to {
+
+        transform:
+            translateY(-120vh);
+
+        opacity: 0;
+    }
+}
+
+/* موبايل */
+
+@media(max-width:768px) {
+
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .photo {
+
+        width: 90%;
+
+        height: auto;
+
+        display: block;
+
+        margin: 40px auto !important;
+    }
+
+    .p1,
+    .p2,
+    .p3,
+    .p4,
+    .p5,
+    .p6 {
+
+        transform: none;
+    }
+}
+.attendance {
+
+    text-align: center;
+
+    padding: 100px 20px;
+
+    background: #fff;
+}
+
+.attendance h2 {
+
+    font-size: 3rem;
+
+    margin-bottom: 20px;
+}
+
+.attendance p {
+
+    font-size: 1.3rem;
+}
+
+.attendance-buttons {
+
+    margin-top: 30px;
+}
+
+.yes-btn,
+.no-btn {
+
+    border: none;
+
+    padding: 15px 30px;
+
+    margin: 10px;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    transition: .3s;
+}
+
+.yes-btn {
+
+    background: #2e7d32;
+
+    color: white;
+}
+
+.no-btn {
+
+    background: #c62828;
+
+    color: white;
+}
+
+.yes-btn:hover,
+.no-btn:hover {
+
+    transform: scale(1.08);
+}
+
+#attendance-result {
+
+    margin-top: 25px;
+
+    font-size: 1.4rem;
+
+    font-weight: bold;
+}
+#guest-form {
+
+    margin-top: 30px;
+}
+
+#guest-name {
+
+    width: 300px;
+
+    max-width: 90%;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    border: 1px solid #ccc;
+
+    font-size: 16px;
+}
+
+#guest-message {
+
+    width: 500px;
+
+    max-width: 90%;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    border: 1px solid #ccc;
+
+    font-size: 16px;
+
+    resize: none;
+}
+#toastMessage {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #333;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 2000;
+    display: none;
+}
