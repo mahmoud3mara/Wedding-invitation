@@ -1000,3 +1000,32 @@ body {
         left: 19px;
     }
 }
+/* تنسيق الأسماء جنب بعض على الموبايل */
+@media (max-width: 768px) {
+    .names-container, 
+    .hero-title, 
+    .wedding-names { 
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center;
+        align-items: center;
+        gap: 15px; /* المسافة بين الاسم والقلب */
+        flex-wrap: nowrap;
+    }
+
+    .names-container h1,
+    .hero-title span,
+    .wedding-names span {
+        font-size: 38px !important; /* تصغير الخط سنة عشان يكفي الشاشة جنب بعض */
+        margin: 0 !important;
+        display: inline-block;
+    }
+
+    .names-container img,
+    .hero-title .heart-icon,
+    .wedding-names .heart {
+        width: 35px !important; /* ضبط حجم القلب الموسطن */
+        height: auto;
+        margin: 0 !important;
+    }
+}
