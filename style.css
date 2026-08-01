@@ -9,274 +9,368 @@ html {
 }
 
 body {
-    font-family: 'Cormorant Garamond', serif;
-    background: #f8f4ee;
+
+    font-family: 'Cairo', sans-serif;
+
+    background: linear-gradient(135deg,
+            #fffdf8,
+            #f7efd9,
+            #fffdf8);
+
     overflow-x: hidden;
-    color: #333;
+
+    color: #444;
+
+    direction: rtl;
+
 }
-
-/* شاشة التحميل */
-
-#loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-
-    background: #111;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    color: white;
-
-    z-index: 9999;
-}
-
-#loading-screen h1 {
-    font-size: 3rem;
-}
-
 /* الصفحة الرئيسية */
 
 .hero {
+
     position: relative;
 
     height: 100vh;
 
-    overflow: hidden;
-
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
     text-align: center;
-}
 
-/* فيديو الخلفية */
+    overflow: hidden;
+
+}
 
 #bg-video {
 
     position: absolute;
 
     top: 50%;
+
     left: 50%;
 
     min-width: 100%;
+
     min-height: 100%;
 
-    width: auto;
-    height: auto;
-
-    transform:
-        translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 
     object-fit: cover;
 
     z-index: -2;
-}
 
-/* الطبقة الغامقة فوق الفيديو */
+}
 
 .overlay {
 
     position: absolute;
 
-    top: 0;
-    left: 0;
+    inset: 0;
 
-    width: 100%;
-    height: 100%;
-
-    background:
-        rgba(0, 0, 0, .45);
+    background: rgba(0, 0, 0, .45);
 
     z-index: -1;
+
 }
 
-/* النصوص */
-
 .hero-content {
+
     color: white;
+
+    padding: 20px;
+
 }
 
 .hero-content h1 {
-    font-size: 5rem;
+
+    font-size: 72px;
+
+    color: #D4AF37;
+
+    text-shadow: 0 0 20px rgba(212, 175, 55, .4);
+
+    margin-bottom: 20px;
+
 }
 
 .subtitle {
-    font-size: 1.6rem;
-    margin-top: 15px;
+
+    font-size: 28px;
+
+    margin-bottom: 20px;
+
 }
 
 .date {
-    margin-top: 20px;
-    font-size: 1.2rem;
-}
 
+    font-size: 22px;
+
+    margin: 12px 0;
+
+}
 /* الأزرار */
 
-.btn {
+.btn,
+.yes-btn,
+.no-btn {
 
-    margin-top: 20px;
-
-    padding: 14px 30px;
+    padding: 15px 35px;
 
     border: none;
 
-    border-radius: 30px;
+    border-radius: 40px;
 
     cursor: pointer;
 
-    font-size: 16px;
+    font-size: 18px;
 
-    margin-right: 10px;
+    transition: .35s;
 
-    transition: .3s;
-}
-
-.btn:hover {
-
-    transform:
-        scale(1.05);
+    margin: 10px;
 
 }
 
-/* السهم */
+.btn {
+
+    background: linear-gradient(45deg, #D4AF37, #f5d97b);
+
+    color: #3b2c12;
+
+    font-weight: bold;
+
+    box-shadow: 0 10px 25px rgba(212, 175, 55, .35);
+
+}
+
+.yes-btn {
+
+    background: linear-gradient(45deg, #D4AF37, #f5d97b);
+
+    color: #3b2c12;
+
+    font-weight: bold;
+
+}
+
+.no-btn {
+
+    background: linear-gradient(45deg, #8B1E3F, #b53660);
+
+    color: white;
+
+}
+
+.btn:hover,
+.yes-btn:hover,
+.no-btn:hover {
+
+    transform: translateY(-5px) scale(1.05);
+
+}
 
 .scroll-down {
 
     position: absolute;
 
-    bottom: 30px;
+    bottom: 25px;
 
     left: 50%;
 
-    transform:
-        translateX(-50%);
+    transform: translateX(-50%);
+
+    font-size: 40px;
 
     color: white;
 
-    font-size: 2rem;
+    animation: bounce 1.5s infinite;
 
-    animation:
-        bounce 1.5s infinite;
 }
 
 @keyframes bounce {
 
     50% {
 
-        transform:
-            translateX(-50%) translateY(10px);
+        transform: translate(-50%, 10px);
 
     }
+
 }
 
 /* العداد */
 
 .countdown-section {
 
-    background: white;
+    padding: 100px 20px;
 
     text-align: center;
 
-    padding: 80px 20px;
+    background: white;
+
 }
 
 .countdown-section h2 {
 
-    margin-bottom: 20px;
+    font-size: 48px;
 
-    font-size: 3rem;
+    color: #8B6B2E;
+
+    margin-bottom: 30px;
+
 }
 
 #countdown {
 
-    font-size: 2rem;
+    font-size: 34px;
 
     font-weight: bold;
+
+    color: #444;
+
 }
 
+/* ========================= */
 /* معرض الصور */
+/* ========================= */
 
 .gallery {
 
-    padding: 100px 20px;
+    padding: 120px 20px;
+
+    position: relative;
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(12, 1fr);
+
+    grid-auto-rows: 120px;
+
+    gap: 20px;
+
 }
 
 .photo {
 
-    width: 320px;
-    height: 420px;
+    width: 100%;
+
+    height: 100%;
 
     object-fit: cover;
 
-    border-radius: 25px;
+    border: 8px solid white;
 
-    box-shadow:
-        0 15px 30px rgba(0, 0, 0, .2);
+    border-radius: 18px;
 
-    cursor: pointer;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .25);
+
+    transition: .7s;
 
     opacity: 0;
 
-    transition: 1s;
+    transform: translateY(80px) rotate(0deg);
+
+    cursor: pointer;
+
 }
 
 .photo.show {
 
     opacity: 1;
+
+    transform: translateY(0);
+
+}
+
+.photo:hover {
+
+    transform: scale(1.05) rotate(0deg);
+
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .35);
+
+    z-index: 20;
+
 }
 
 /* توزيع الصور */
 
 .p1 {
-    margin-left: 5%;
-    transform: translateY(80px) rotate(-8deg);
+
+    grid-column: 1 / span 4;
+
+    grid-row: 1 / span 3;
+
+    transform: rotate(-8deg);
+
 }
 
 .p2 {
-    margin-left: 50%;
-    margin-top: 80px;
-    transform: translateY(80px) rotate(8deg);
+
+    grid-column: 7 / span 4;
+
+    grid-row: 2 / span 3;
+
+    transform: rotate(7deg);
+
 }
 
 .p3 {
-    margin-left: 15%;
-    margin-top: 100px;
-    transform: translateY(80px) rotate(-5deg);
+
+    grid-column: 3 / span 4;
+
+    grid-row: 5 / span 3;
+
+    transform: rotate(5deg);
+
 }
 
 .p4 {
-    margin-left: 55%;
-    margin-top: 100px;
-    transform: translateY(80px) rotate(6deg);
+
+    grid-column: 8 / span 4;
+
+    grid-row: 6 / span 3;
+
+    transform: rotate(-7deg);
+
 }
 
 .p5 {
-    margin-left: 10%;
-    margin-top: 100px;
-    transform: translateY(80px) rotate(-7deg);
+
+    grid-column: 1 / span 4;
+
+    grid-row: 9 / span 3;
+
+    transform: rotate(-5deg);
+
 }
 
 .p6 {
-    margin-left: 50%;
-    margin-top: 100px;
-    transform: translateY(80px) rotate(5deg);
-}
 
-/* القلوب والورد */
+    grid-column: 7 / span 5;
+
+    grid-row: 10 / span 3;
+
+    transform: rotate(8deg);
+
+}
 
 .decoration {
 
+    grid-column: 1 / -1;
+
     text-align: center;
 
-    font-size: 50px;
+    font-size: 55px;
 
-    margin: 80px 0;
+    color: #d4af37;
+
+    margin: 30px 0;
+
 }
 
 /* الدعوة */
@@ -285,47 +379,137 @@ body {
 
     background: white;
 
+    padding: 100px 20px;
+
     text-align: center;
 
-    padding: 100px 20px;
 }
 
 .invitation h2 {
 
-    font-size: 4rem;
+    font-size: 48px;
 
-    margin-bottom: 20px;
+    color: #8B6B2E;
+
+    margin-bottom: 30px;
+
 }
 
 .invitation p {
 
-    font-size: 1.3rem;
+    font-size: 23px;
+
+    line-height: 2;
+
 }
 
 .details {
 
     margin-top: 40px;
+
 }
 
 .details p {
 
-    margin: 15px 0;
+    margin: 15px;
+
+}
+
+/* الحضور */
+
+.attendance {
+
+    padding: 100px 20px;
+
+    text-align: center;
+
+    background: #fdfaf5;
+
+}
+
+.attendance h2 {
+
+    font-size: 45px;
+
+    color: #8B6B2E;
+
+    margin-bottom: 25px;
+
+}
+
+.attendance p {
+
+    font-size: 22px;
+
+}
+
+#attendance-result {
+
+    margin-top: 20px;
+
+    font-size: 22px;
+
+    color: #8B1E3F;
+
+}
+
+#guest-name,
+#guest-message {
+
+    width: 90%;
+
+    max-width: 550px;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    border: 2px solid #D4AF37;
+
+    font-size: 18px;
+
+    margin: 10px auto;
+
+    display: block;
+
+    font-family: 'Cairo', sans-serif;
+
+}
+
+#guest-message {
+
+    resize: none;
+
 }
 
 /* النهاية */
 
 .thanks {
 
+    padding: 120px 20px;
+
     text-align: center;
 
-    padding: 100px 20px;
+    background: white;
+
 }
 
 .thanks h2 {
 
-    font-size: 3rem;
+    font-size: 50px;
+
+    color: #D4AF37;
 
     margin-bottom: 20px;
+
+}
+
+.thanks p {
+
+    font-size: 24px;
+
+    line-height: 2;
+
 }
 
 /* تكبير الصور */
@@ -337,24 +521,33 @@ body {
     position: fixed;
 
     top: 0;
+
     left: 0;
 
     width: 100%;
+
     height: 100vh;
 
-    background:
-        rgba(0, 0, 0, .95);
+    background: rgba(0, 0, 0, .95);
 
     justify-content: center;
+
     align-items: center;
 
-    z-index: 999;
+    z-index: 9999;
+
 }
 
-#lightbox-img {
+#lightbox img {
 
     max-width: 90%;
+
     max-height: 90%;
+
+    border: 6px solid #D4AF37;
+
+    border-radius: 15px;
+
 }
 
 #close-btn {
@@ -362,191 +555,448 @@ body {
     position: absolute;
 
     top: 20px;
-    right: 30px;
 
-    color: white;
+    right: 30px;
 
     font-size: 50px;
 
+    color: white;
+
     cursor: pointer;
+
 }
 
-/* القلوب الطائرة */
+/* القلوب */
 
 .heart {
 
     position: fixed;
 
-    bottom: -20px;
-
-    font-size: 25px;
+    bottom: -30px;
 
     pointer-events: none;
 
-    animation:
-        fly 8s linear forwards;
+    animation: fly 8s linear forwards;
+
 }
 
 @keyframes fly {
 
     to {
 
-        transform:
-            translateY(-120vh);
+        transform: translateY(-120vh);
 
         opacity: 0;
-    }
-}
 
-/* موبايل */
-
-@media(max-width:768px) {
-
-    .hero-content h1 {
-        font-size: 3rem;
     }
 
-    .subtitle {
-        font-size: 1.2rem;
-    }
-
-    .photo {
-
-        width: 90%;
-
-        height: auto;
-
-        display: block;
-
-        margin: 40px auto !important;
-    }
-
-    .p1,
-    .p2,
-    .p3,
-    .p4,
-    .p5,
-    .p6 {
-
-        transform: none;
-    }
-}
-.attendance {
-
-    text-align: center;
-
-    padding: 100px 20px;
-
-    background: #fff;
 }
 
-.attendance h2 {
+/* رسالة */
 
-    font-size: 3rem;
+#toastMessage {
 
-    margin-bottom: 20px;
-}
+    position: fixed;
 
-.attendance p {
+    top: 20px;
 
-    font-size: 1.3rem;
-}
+    left: 50%;
 
-.attendance-buttons {
+    transform: translateX(-50%);
 
-    margin-top: 30px;
-}
+    background: #8B1E3F;
 
-.yes-btn,
-.no-btn {
+    color: white;
 
-    border: none;
+    padding: 18px 25px;
 
-    padding: 15px 30px;
+    border-radius: 40px;
 
-    margin: 10px;
+    display: none;
 
-    border-radius: 30px;
-
-    cursor: pointer;
+    z-index: 99999;
 
     font-size: 18px;
 
-    transition: .3s;
 }
 
-.yes-btn {
+/* زر الموسيقى */
 
-    background: #2e7d32;
+#audioBtn {
 
-    color: white;
-}
-
-.no-btn {
-
-    background: #c62828;
-
-    color: white;
-}
-
-.yes-btn:hover,
-.no-btn:hover {
-
-    transform: scale(1.08);
-}
-
-#attendance-result {
-
-    margin-top: 25px;
-
-    font-size: 1.4rem;
-
-    font-weight: bold;
-}
-#guest-form {
-
-    margin-top: 30px;
-}
-
-#guest-name {
-
-    width: 300px;
-
-    max-width: 90%;
-
-    padding: 12px;
-
-    border-radius: 10px;
-
-    border: 1px solid #ccc;
-
-    font-size: 16px;
-}
-
-#guest-message {
-
-    width: 500px;
-
-    max-width: 90%;
-
-    padding: 12px;
-
-    border-radius: 10px;
-
-    border: 1px solid #ccc;
-
-    font-size: 16px;
-
-    resize: none;
-}
-#toastMessage {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #333;
-    color: #fff;
-    padding: 15px;
-    border-radius: 5px;
-    z-index: 2000;
+
+    bottom: 20px;
+
+    left: 20px;
+
+    padding: 14px 22px;
+
+    border: none;
+
+    border-radius: 40px;
+
+    background: #D4AF37;
+
+    color: white;
+
+    cursor: pointer;
+
+    z-index: 999;
+
+}
+
+/* الموبايل */
+
+@media (max-width:768px) {
+
+    .gallery {
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+        padding: 60px 15px;
+    }
+
+    .photo {
+        width: 100%;
+        height: 350px;
+        opacity: 1;
+        transform: none !important;
+    }
+
+    .invitation-paper {
+        padding: 25px 18px;
+    }
+
+    .invitation-paper h1 {
+        font-size: 38px;
+    }
+
+    .invitation-paper h3 {
+        font-size: 26px;
+    }
+
+    .ayah {
+        font-size: 18px;
+    }
+
+    .invitation-paper p {
+        font-size: 18px;
+    }
+
+    #envelope {
+        width: 260px;
+        height: 170px;
+    }
+
+    .envelope-body {
+        height: 105px;
+    }
+
+    .envelope-top {
+        height: 95px;
+    }
+
+    #seal {
+        width: 60px;
+        height: 60px;
+        top: 48px;
+        font-size: 18px;
+    }
+}
+
+/* ================= شاشة البداية والظرف ================= */
+
+#envelope-screen {
+    position: fixed;
+    inset: 0;
+    background: #fdfbf7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding: 30px;
+    z-index: 99999;
+}
+
+/* الورقة مخفية في البداية */
+.invitation-paper {
     display: none;
+    width: 850px;
+    max-width: 90%;
+    background: #fff;
+    border: 2px solid #d4af37;
+    border-radius: 30px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, .12);
+}
+
+.invitation-paper h3 {
+    font-family: 'Amiri', serif;
+    font-size: 42px;
+    color: #b28a2d;
+    margin-bottom: 25px;
+}
+
+.ayah {
+    font-family: 'Amiri', serif;
+    font-size: 31px;
+    line-height: 2;
+    color: #444;
+    margin: 20px 0;
+}
+
+.invitation-paper h1 {
+    font-size: 62px;
+    color: #d4af37;
+    margin: 25px 0;
+}
+
+.invitation-paper p {
+    font-size: 26px;
+    line-height: 2;
+}
+
+/* مجسم الظرف */
+#envelope {
+    position: relative;
+    width: 330px;
+    height: 200px;
+    background: #fff;
+    border: 2px solid #d4af37;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.envelope-body {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* الرسالة الترحيبية على الظرف */
+.envelope-welcome {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    text-align: center;
+    font-family: 'Amiri', serif;
+    font-size: 20px;
+    color: #b28a2d;
+    font-weight: bold;
+    z-index: 4;
+    margin: 0;
+    pointer-events: none;
+}
+
+/* غطاء الظرف */
+.envelope-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: #faf7f0;
+    border-bottom: 2px solid #d4af37;
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    z-index: 2;
+}
+
+/* الختم */
+#seal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #8b1d1d;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-family: 'Amiri', serif;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 5;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease;
+    user-select: none;
+}
+
+#seal:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+.open-text {
+    margin-top: 10px;
+    font-size: 22px;
+    color: #555;
+    font-family: 'Amiri', serif;
+}
+
+/* ================= تصميم النتيجة (Calendar) ================= */
+
+.calendar-section {
+    text-align: center;
+    padding: 50px 20px;
+    background: #fdfbf7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.calendar-month {
+    font-family: 'Cairo', sans-serif;
+    font-size: 55px;
+    font-weight: 900;
+    color: #8b5a2b;
+    letter-spacing: 4px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.calendar-year {
+    font-family: 'Amiri', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: #8b5a2b;
+    margin: 0 0 25px 0;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 35px 40px;
+    max-width: 360px;
+    justify-items: center;
+    align-items: center;
+}
+
+.calendar-days span {
+    font-family: 'Cairo', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #8b5a2b;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+}
+
+/* الأيام المميزة بقلوب */
+.calendar-days .wedding-day {
+    color: #fff;
+    z-index: 1;
+}
+
+.wedding-day .heart-shape {
+    position: absolute;
+    width: 46px;
+    height: 46px;
+    background-color: #d9a0a0;
+    z-index: -1;
+    transform: rotate(-45deg);
+    top: 5px;
+}
+
+.wedding-day .heart-shape::before,
+.wedding-day .heart-shape::after {
+    content: "";
+    position: absolute;
+    width: 46px;
+    height: 46px;
+    background-color: #d9a0a0;
+    border-radius: 50%;
+}
+
+.wedding-day .heart-shape::before {
+    top: -23px;
+    left: 0;
+}
+
+.wedding-day .heart-shape::after {
+    left: 23px;
+    top: 0;
+}
+
+/* شاشات الموبايل */
+@media(max-width:768px) {
+    .invitation-paper {
+        padding: 25px 18px;
+    }
+
+    .invitation-paper h3 {
+        font-size: 28px;
+    }
+
+    .invitation-paper h1 {
+        font-size: 42px;
+    }
+
+    .invitation-paper p {
+        font-size: 18px;
+    }
+
+    .ayah {
+        font-size: 21px;
+    }
+
+    #envelope {
+        transform: scale(.9);
+    }
+
+    .envelope-welcome {
+        font-size: 18px;
+        top: 25px;
+    }
+
+    .calendar-month {
+        font-size: 42px;
+    }
+
+    .calendar-year {
+        font-size: 18px;
+    }
+
+    .calendar-days span {
+        font-size: 20px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .calendar-days {
+        gap: 30px 30px;
+    }
+
+    .wedding-day .heart-shape {
+        width: 38px;
+        height: 38px;
+        top: 4px;
+    }
+
+    .wedding-day .heart-shape::before,
+    .wedding-day .heart-shape::after {
+        width: 38px;
+        height: 38px;
+    }
+
+    .wedding-day .heart-shape::before {
+        top: -19px;
+    }
+
+    .wedding-day .heart-shape::after {
+        left: 19px;
+    }
 }
