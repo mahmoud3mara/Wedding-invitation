@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Kareem & Hadeer</title>
+    <title>دعوة زفاف كريم وهدير</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Amiri:wght@400;700&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
@@ -22,31 +21,45 @@
 
 <body>
 
-    <!-- شاشة التحميل -->
-
-    <div id="loading-screen">
-
-        <h1>
-    Welcome to our wedding ❤️
-        </h1>
-
+    <!-- شاشة الظرف -->
+    <div id="envelope-screen">
+    
+        <!-- الورقة هنا هتاخد display: none في الـ CSS عشان متظهرش غير لما الظرف يفتح -->
+        <div class="invitation-paper">
+            <h3>بسم الله الرحمن الرحيم</h3>
+            <p class="ayah">
+                ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم
+                مَوَدَّةً وَرَحْمَةً ﴾
+            </p>
+            <p>بكل الحب والسعادة</p>
+            <h1>كريم 🤍 هدير</h1>
+            <p>يتشرفان بدعوتكم لحضور حفل زفافهما</p>
+        </div>
+    
+        <!-- الظرف والختم -->
+        <div id="envelope">
+            <div class="envelope-top"></div>
+            <div class="envelope-body"></div>
+            <div id="seal" onclick="openInvitation()">افتح</div>
+        </div>
+    
+        <p class="open-text">اضغط على الختم لفتح الدعوة</p>
+    
     </div>
 
-    <!-- الموسيقى -->
     <audio id="music" loop>
+
         <source src="music.mp3" type="audio/mpeg">
+
     </audio>
-    
-    <!-- أضف الزر ده هنا في سطر 42 -->
-    <button id="audioBtn" onclick="toggleAudio()" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-        🔊
+
+    <button id="audioBtn" onclick="toggleAudio()">
+
+        🎵 تشغيل الموسيقى
+
     </button>
 
-    <!-- الصفحة الرئيسية -->
-
     <section class="hero">
-
-        <!-- فيديو الخلفية -->
 
         <video autoplay muted loop playsinline id="bg-video">
 
@@ -59,30 +72,21 @@
         <div class="hero-content">
 
             <h1>
-                Kareem & Hadeer
+
+                كريم 🤍 هدير
+
             </h1>
 
             <p class="subtitle">
 
-                Two hearts, one journey ❤️
+                يا أيُّها الصُّبحُ قُل للشَّمسِ معذرةً
+                فما ضياؤُكِ أَبهَى مِن مُحَيَّاها
 
             </p>
-
-        <!--
-            <p class="date">
-
-                📅 Date : 17/8/2026
-
-            </p>
-        -->
-        <button id="audioBtn" onclick="toggleAudio()"
-            style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; padding: 10px; cursor: pointer;">
-            Play Music
-        </button>
 
             <button class="btn" onclick="shareSite()">
 
-                📲 Share
+                مشاركة الدعوة
 
             </button>
 
@@ -95,31 +99,52 @@
         </div>
 
     </section>
-
-    <!-- العداد -->
-
+    <!-- قسم النتيجة الجديد (Calendar) -->
+    <section class="calendar-section">
+        <h2 class="calendar-month">أَغُسْطُس</h2>
+        <p class="calendar-year">two thousand twenty-six</p>
+    
+        <div class="calendar-days">
+            <span>13</span>
+            <span>14</span>
+            <span>15</span>
+            <span>16</span>
+    
+            <!-- ليلة الحنة -->
+            <span class="wedding-day">
+                17
+                <div class="heart-shape"></div>
+            </span>
+    
+            <span>18</span>
+    
+            <!-- حفل الزفاف -->
+            <span class="wedding-day">
+                19
+                <div class="heart-shape"></div>
+            </span>
+    
+            <span>20</span>
+        </div>
+    </section>
     <section class="countdown-section">
-
-        <h2>
-
-            Countdown
-
-        </h2>
 
         <div id="countdown">
 
-            Loading...
+            جارى التحميل...
 
         </div>
 
     </section>
-
+    
     <!-- معرض الصور -->
 
     <section class="gallery">
 
-        <div class="decoration">
-            ❤️
+        <div class="section-title">
+
+            ❦ لحظاتنا ❦
+
         </div>
 
         <img src="1.jpg" class="photo p1">
@@ -127,7 +152,9 @@
         <img src="2.jpg" class="photo p2">
 
         <div class="decoration">
-            🌹
+
+            ✦ ❁ ✦
+
         </div>
 
         <img src="3.jpg" class="photo p3">
@@ -135,7 +162,9 @@
         <img src="4.jpg" class="photo p4">
 
         <div class="decoration">
-            🌸
+
+            ❦
+
         </div>
 
         <img src="5.jpg" class="photo p5">
@@ -144,88 +173,102 @@
 
     </section>
 
+
     <!-- الدعوة -->
 
     <section class="invitation">
 
         <h2>
 
-            You're Invited
+            دعوة لحضور حفل الزفاف
+
+        </h2>
+
+        <div class="details">
+
+            <p>
+
+                💍 ليلة الحنة :
+                17 / 08 / 2026
+
+            </p>
+
+            <p>
+
+                🤍 حفل الزفاف :
+                19 / 08 / 2026
+
+            </p>
+
+            <p>
+
+                📍 المكان :
+        الحنة امام المنزل
+
+            </p>
+            <p>
+                By: Mahmoud Emara
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- تأكيد الحضور -->
+
+    <section class="attendance">
+
+        <h2>
+
+            هل ستشرفنا بحضوركم؟
 
         </h2>
 
         <p>
 
-        Will you celebrate our wedding with us? 
+            يسعدنا تأكيد حضوركم وترك رسالة تهنئة.
 
         </p>
 
-        <div class="details">
-
-            <p>
-                📅 Henna Night : 17/8/2026
-                
-            </p>
-            <p> 
-                    Wedding Day : 19/8/2026
-            </p>
-            <p>
-                ⏰ Time : 09:00 PM
-            </p>
-
-            <p>
-                📍 Location : at home
-            </p>
-
-            <p>
-                By Mahmoud Emara
-            </p>
-            
-        </div>
-    <section class="attendance">
-    
-        <!--<h2>RSVP 💍</h2>--> 
-    
-        <p>
-        </h2> Will you celebrate our wedding with us? </h2>
-        </p>
-    
         <div class="attendance-buttons">
-    
+
             <button class="yes-btn" onclick="attend()">
-    
-                I Will Attend
-    
+
+                أنوي الحضور ❤️
+
             </button>
-    
+
             <button class="no-btn" onclick="notAttend()">
-    
-                I Can't Attend
-    
+
+                لن أتمكن من الحضور
+
             </button>
-    
+
         </div>
-    
+
         <p id="attendance-result"></p>
+
         <div id="guest-form" style="display:none;">
-        
-            <input type="text" id="guest-name" placeholder="Your Name">
-        
+
+            <input type="text" id="guest-name" placeholder="الاسم">
+
             <br><br>
-        
-            <textarea id="guest-message" placeholder="Write your wishes for Kareem & Hadeer ❤️" rows="5"></textarea>
-        
+
+            <textarea id="guest-message" rows="5" placeholder="اكتب تهنئتك للعروسين ❤️"></textarea>
+
             <br><br>
-        
+
             <button class="yes-btn" onclick="submitWish()">
-        
-                Send 
-        
+
+                إرسال التهنئة
+
             </button>
-        
+
         </div>
+
     </section>
-    </section>
+
 
     <!-- النهاية -->
 
@@ -233,17 +276,21 @@
 
         <h2>
 
-            Thank You 
+            شكراً لكم
 
         </h2>
 
         <p>
 
-            For sharing this special
-            moment with us
+            سعدنا بزيارتكم لهذه الدعوة
 
         </p>
-        <p> By Mahmoud Emara </p>
+
+        <p>
+
+            ونسأل الله أن يجمعنا دائماً على الخير والمحبة
+
+        </p>
 
     </section>
 
@@ -261,10 +308,14 @@
 
     </div>
 
-    <script src="script.js"></script>
     <div id="toastMessage">
-    ❤️ اللَّهُمَّ ‌صَلِّ ‌عَلَى ‌مُحَمَّدٍ ‌وَعَلَى ‌آلِ ‌مُحَمَّدٍ»  بارَكَ اللَّهُ لَكم ، وبارَكَ عليْكم ، وجمعَ بينَكما في خيرٍ.» 
+
+        اللهم بارك لهما وبارك عليهما واجمع بينهما في خير ❤️
+
     </div>
+
+    <script src="script.js"></script>
+
 </body>
 
 </html>
