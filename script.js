@@ -1,413 +1,420 @@
-// =====================
-// شاشة التحميل
-// =====================
+// ======================
+// تشغيل وإيقاف الموسيقى
+// ======================
 
-window.addEventListener("load", () => {
+function toggleAudio(){
 
-    setTimeout(() => {
+const music=document.getElementById("music");
 
-        document.getElementById("loading-screen")
-        .style.display = "none";
+const btn=document.getElementById("audioBtn");
 
-    }, 2000);
+if(music.paused){
+
+music.play();
+
+btn.innerHTML="⏸️ إيقاف الموسيقى";
+
+}else{
+
+music.pause();
+
+btn.innerHTML="🎵 تشغيل الموسيقى";
+
+}
+
+}
+
+// ======================
+// فتح الظرف
+// ======================
+
+function openInvitation(){
+
+const top=document.querySelector(".envelope-top");
+
+const seal=document.getElementById("seal");
+
+const screen=document.getElementById("envelope-screen");
+
+top.style.transform="rotateX(180deg)";
+
+seal.style.transform="translateX(-50%) scale(.3)";
+
+seal.style.opacity="0";
+
+setTimeout(()=>{
+
+screen.style.transition="1.5s";
+
+screen.style.opacity="0";
+
+},1500);
+
+setTimeout(()=>{
+
+screen.style.display="none";
+
+document.getElementById("music").play().catch(()=>{});
+
+},2800);
+
+}
+
+// ======================
+// مشاركة الدعوة
+// ======================
+
+function shareSite(){
+
+if(navigator.share){
+
+navigator.share({
+
+title:"دعوة زفاف كريم وهدير",
+
+text:"يشرفنا حضوركم ❤️",
+
+url:window.location.href
 
 });
 
+}else{
 
-// ==========================
-// تشغيل/إيقاف الموسيقى
-// ==========================
-function toggleAudio() {
-  const music = document.getElementById("music");
-  const btn = document.getElementById("audioBtn");
+navigator.clipboard.writeText(window.location.href);
 
-  if (music.paused) {
-    music.play();
-    btn.innerHTML = "Pause Music"; // الكلمة لما تكون الموسيقى شغالة
-  } else {
-    music.pause();
-    btn.innerHTML = "Play Music"; // الكلمة لما تكون الموسيقى واقفة
-  }
-}
-
-
-// =====================
-// مشاركة الموقع
-// =====================
-function shareSite() {
-  if (navigator.share) {
-    // هذه الميزة تعمل على معظم الموبايلات والمتصفحات الحديثة
-    navigator.share({
-      title: 'Wedding Invitation',
-      text: "You're invited to Kareem & Hadeer wedding ❤️",
-      url: window.location.href,
-    })
-    .then(() => console.log('Successful share'))
-    .catch((error) => console.log('Error sharing', error));
-  } else {
-    // لو المتصفح قديم، هنخليه ينسخ الرابط للمستخدم
-    alert("Copied to clipboard: " + window.location.href);
-    navigator.clipboard.writeText(window.location.href);
-  }
-}
-
-
-// =====================
-// العداد التنازلي
-// غير التاريخ هنا
-// =====================
-
-const targetDate =
-new Date("2026-08-17 21:00:00");
-
-function updateCountdown() {
-
-    const now =
-    new Date();
-
-    const diff =
-    targetDate - now;
-
-    if(diff <= 0){
-
-        document
-        .getElementById("countdown")
-        .innerHTML =
-        "🎉 Today Is The Big Day 🎉";
-
-        return;
-    }
-
-    const days =
-    Math.floor(
-        diff /
-        (1000 * 60 * 60 * 24)
-    );
-
-    const hours =
-    Math.floor(
-        (diff %
-        (1000 * 60 * 60 * 24))
-        /
-        (1000 * 60 * 60)
-    );
-
-    const minutes =
-    Math.floor(
-        (diff %
-        (1000 * 60 * 60))
-        /
-        (1000 * 60)
-    );
-
-    const seconds =
-    Math.floor(
-        (diff %
-        (1000 * 60))
-        /
-        1000
-    );
-
-    document
-    .getElementById("countdown")
-    .innerHTML =
-
-    `${days} Days
-    ${hours} Hours
-    ${minutes} Minutes
-    ${seconds} Seconds`;
+alert("تم نسخ الرابط ❤️");
 
 }
 
-setInterval(
-    updateCountdown,
-    1000
-);
+}
+
+// ======================
+// العداد
+// ======================
+
+const targetDate=new Date("2026-08-19 21:00:00");
+
+function updateCountdown(){
+
+const now=new Date();
+
+const diff=targetDate-now;
+
+if(diff<=0){
+
+document.getElementById("countdown").innerHTML="🎉 اليوم هو يوم الزفاف 🎉";
+
+return;
+
+}
+
+const days=Math.floor(diff/(1000*60*60*24));
+
+const hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+
+const minutes=Math.floor((diff%(1000*60*60))/(1000*60));
+
+const seconds=Math.floor((diff%(1000*60))/1000);
+
+document.getElementById("countdown").innerHTML=
+
+`${days} يوم
+
+<br>
+
+${hours} ساعة
+
+<br>
+
+${minutes} دقيقة
+
+<br>
+
+${seconds} ثانية`;
+
+}
+
+setInterval(updateCountdown,1000);
 
 updateCountdown();
 
+// ======================
+// ظهور الصور
+// ======================
 
-// =====================
-// ظهور الصور أثناء النزول
-// =====================
+const photos=document.querySelectorAll(".photo");
 
-const photos =
-document.querySelectorAll(".photo");
+const observer=new IntersectionObserver(entries=>{
 
-const observer =
-new IntersectionObserver(
+entries.forEach(entry=>{
 
-(entries)=>{
+if(entry.isIntersecting){
 
-    entries.forEach(entry=>{
+entry.target.classList.add("show");
 
-        if(entry.isIntersecting){
-
-            entry.target
-            .classList
-            .add("show");
-
-        }
-
-    });
-
-},
-{
-    threshold:0.2
 }
 
-);
-
-photos.forEach(photo=>{
-
-    observer.observe(photo);
-
 });
 
+},{threshold:.2});
 
-// =====================
+photos.forEach(photo=>observer.observe(photo));
+
+// ======================
 // تكبير الصور
-// =====================
+// ======================
 
-const lightbox =
-document.getElementById("lightbox");
+const lightbox=document.getElementById("lightbox");
 
-const lightboxImg =
-document.getElementById("lightbox-img");
+const lightboxImg=document.getElementById("lightbox-img");
 
 photos.forEach(photo=>{
 
-    photo.addEventListener(
-    "click",
+photo.onclick=()=>{
 
-    ()=>{
+lightbox.style.display="flex";
 
-        lightbox.style.display =
-        "flex";
+lightboxImg.src=photo.src;
 
-        lightboxImg.src =
-        photo.src;
-
-    });
+};
 
 });
 
-document
-.getElementById("close-btn")
-.addEventListener(
+document.getElementById("close-btn").onclick=()=>{
 
-"click",
+lightbox.style.display="none";
 
-()=>{
+};
 
-    lightbox.style.display =
-    "none";
+lightbox.onclick=(e)=>{
 
-});
+if(e.target===lightbox){
 
-lightbox.addEventListener(
+lightbox.style.display="none";
 
-"click",
+}
 
-(e)=>{
+};
 
-    if(
-        e.target === lightbox
-    ){
-
-        lightbox.style.display =
-        "none";
-
-    }
-
-});
-
-
-// =====================
-// القلوب الطائرة
-// =====================
+// ======================
+// قلوب طائرة
+// ======================
 
 function createHeart(){
 
-    const heart =
-    document.createElement("div");
+const heart=document.createElement("div");
 
-    heart.classList.add("heart");
+heart.className="heart";
 
-    const icons = [
+const icons=["❤️","🤍","🌸","❦"];
 
-        "❤️",
-        "💕",
-        "💖",
-        "🌸"
+heart.innerHTML=icons[Math.floor(Math.random()*icons.length)];
 
-    ];
+heart.style.left=Math.random()*100+"vw";
 
-    heart.innerHTML =
+heart.style.fontSize=(20+Math.random()*25)+"px";
 
-    icons[
-    Math.floor(
-    Math.random() *
-    icons.length
-    )
-    ];
+document.body.appendChild(heart);
 
-    heart.style.left =
-
-    Math.random() *
-    100 +
-    "vw";
-
-    heart.style.fontSize =
-
-    (
-    20 +
-    Math.random()*25
-    ) + "px";
-
-    document.body
-    .appendChild(heart);
-
-    setTimeout(()=>{
-
-        heart.remove();
-
-    },8000);
+setTimeout(()=>heart.remove(),8000);
 
 }
 
-setInterval(
-    createHeart,
-    700
-);
+setInterval(createHeart,700);
+// ======================
+// تأكيد الحضور
+// ======================
 
+function attend(){
 
-// =====================
-// رسالة ترحيب من الرابط
-// مثال:
-// index.html?guest=maro
-// =====================
+document.getElementById("guest-form").style.display="block";
 
-const params =
-new URLSearchParams(
-window.location.search
-);
+document.getElementById("attendance-result").innerHTML=
 
-const guest =
-params.get("guest");
-
-if(guest){
-
-    const welcome =
-    document.createElement("div");
-
-    welcome.style.position =
-    "fixed";
-
-    welcome.style.top =
-    "20px";
-
-    welcome.style.left =
-    "50%";
-
-    welcome.style.transform =
-    "translateX(-50%)";
-
-    welcome.style.background =
-    "white";
-
-    welcome.style.padding =
-    "12px 25px";
-
-    welcome.style.borderRadius =
-    "30px";
-
-    welcome.style.boxShadow =
-    "0 5px 20px rgba(0,0,0,.2)";
-
-    welcome.style.zIndex =
-    "9999";
-
-    welcome.innerHTML =
-    `Welcome ${guest} ❤️`;
-
-    document.body
-    .appendChild(welcome);
-
-}
-    function attend(){
-
-document.getElementById(
-"guest-form"
-).style.display = "block";
-
-document.getElementById(
-"attendance-result"
-).innerHTML =
-
-" Please leave your name and wishes.❤️";
+"💛 نتشرف بحضوركم، برجاء كتابة الاسم ورسالة تهنئة.";
 
 }
 
 function notAttend(){
 
-document.getElementById(
-"guest-form"
-).style.display = "none";
+document.getElementById("guest-form").style.display="none";
 
-document.getElementById(
-"attendance-result"
-).innerHTML =
+document.getElementById("attendance-result").innerHTML=
 
-" Thank you for letting us know.❤️";
+"🌹 شكرًا لإبلاغنا، نتمنى رؤيتكم في مناسبة سعيدة.";
 
 }
-function submitWish() {
-  const name = document.getElementById("guest-name").value;
-  const message = document.getElementById("guest-message").value;
 
-  // التحقق من أن الحقول ليست فارغة
-  if (name.trim() === "" || message.trim() === "") {
-    alert("Please enter your name and message.");
-    return;
-  }
+// ======================
+// إرسال التهنئة
+// ======================
 
-  // رابط الـ Web App المربوط بملف الـ Google Sheets
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbwMEoobxx1Qb6M5IKO3UivgGyYR5AXS1tNp3eTrxtA4il-AQhwfPDIODXp3Js5H1V1Tcg/exec';
+function submitWish(){
 
-  // تجهيز البيانات
-  const formData = new URLSearchParams();
-  formData.append('name', name);
-  formData.append('message', message);
+const name=document.getElementById("guest-name").value.trim();
 
-  // عملية الإرسال
-  fetch(scriptURL, {
-    method: 'POST',
-    mode: 'no-cors',
-    body: formData
-  })
-  .then(() => {
-    // رسالة الشكر على الموقع
-    document.getElementById("attendance-result").innerHTML = 
-      `Thank you ${name} for your lovely wishes!❤️ `;
-    // تفريغ الحقول بعد الإرسال
-    document.getElementById("guest-form").reset();
-  })
-  .catch(error => console.error('Error!', error));
+const message=document.getElementById("guest-message").value.trim();
+
+if(name===""||message===""){
+
+alert("من فضلك اكتب الاسم ورسالة التهنئة ❤️");
+
+return;
+
 }
 
+const scriptURL="https://script.google.com/macros/s/AKfycbwMEoobxx1Qb6M5IKO3UivgGyYR5AXS1tNp3eTrxtA4il-AQhwfPDIODXp3Js5H1V1Tcg/exec";
 
-function showToast(message) {
-    const toast = document.getElementById("toastMessage");
-    toast.innerHTML = message;
-    toast.style.display = "block";
-    
-    setTimeout(function() {
-        toast.style.display = "none";
-    }, 10000); // الرسالة ستختفي بعد 10 ثواني
-}
+const formData=new URLSearchParams();
 
-// تظهر الرسالة تلقائياً أول ما الموقع يفتح
-window.addEventListener("load", function() {
-    showToast(" ❤️اللَّهُمَّ ‌صَلِّ ‌عَلَى ‌مُحَمَّدٍ ‌وَعَلَى ‌آلِ ‌مُحَمَّدٍ» «بارَكَ اللَّهُ لَكم ، وبارَكَ عليْكم ، وجمعَ بينَكما في خيرٍ.» ");
+formData.append("name",name);
+
+formData.append("message",message);
+
+fetch(scriptURL,{
+
+method:"POST",
+
+mode:"no-cors",
+
+body:formData
+
+})
+
+.then(()=>{
+
+document.getElementById("attendance-result").innerHTML=
+
+`💛 شكرًا ${name} على تهنئتك الجميلة.`;
+
+document.getElementById("guest-name").value="";
+
+document.getElementById("guest-message").value="";
+
+showToast("💌 تم إرسال التهنئة بنجاح");
+
+})
+
+.catch(()=>{
+
+showToast("❌ حدث خطأ أثناء الإرسال");
+
 });
+
+}
+
+// ======================
+// رسالة الترحيب بالرابط
+// ======================
+
+const params=new URLSearchParams(window.location.search);
+
+const guest=params.get("guest");
+
+if(guest){
+
+const welcome=document.createElement("div");
+
+welcome.style.position="fixed";
+
+welcome.style.top="20px";
+
+welcome.style.left="50%";
+
+welcome.style.transform="translateX(-50%)";
+
+welcome.style.background="#ffffff";
+
+welcome.style.padding="15px 25px";
+
+welcome.style.borderRadius="40px";
+
+welcome.style.boxShadow="0 10px 30px rgba(0,0,0,.2)";
+
+welcome.style.zIndex="9999";
+
+welcome.style.fontSize="20px";
+
+welcome.innerHTML=`🌹 أهلاً وسهلاً ${guest}`;
+
+document.body.appendChild(welcome);
+
+setTimeout(()=>{
+
+welcome.remove();
+
+},6000);
+
+}
+
+// ======================
+// Toast
+// ======================
+
+function showToast(message){
+
+const toast=document.getElementById("toastMessage");
+
+toast.innerHTML=message;
+
+toast.style.display="block";
+
+toast.style.opacity="1";
+
+setTimeout(()=>{
+
+toast.style.opacity="0";
+
+setTimeout(()=>{
+
+toast.style.display="none";
+
+},500);
+
+},5000);
+
+}
+
+// ======================
+// رسالة البداية
+// ======================
+
+window.addEventListener("load",()=>{
+
+setTimeout(()=>{
+
+showToast("🤍 بارك الله لهما وبارك عليهما وجمع بينهما في خير");
+
+},3500);
+
+});
+
+// ======================
+// تأثير بسيط عند تحريك الماوس
+// ======================
+
+document.addEventListener("mousemove",(e)=>{
+
+const hero=document.querySelector(".hero-content");
+
+const x=(e.clientX-window.innerWidth/2)/80;
+
+const y=(e.clientY-window.innerHeight/2)/80;
+
+hero.style.transform=`translate(${x}px,${y}px)`;
+
+});
+
+// ======================
+// منع السحب على الصور
+// ======================
+
+document.querySelectorAll("img").forEach(img=>{
+
+img.setAttribute("draggable","false");
+
+});
+
+// ======================
+// نهاية الملف
+// ======================
